@@ -1,9 +1,7 @@
 package viii.executor;
 
 import java.util.Random;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 /**
  * Created by jayati on 8/1/18.
@@ -21,6 +19,13 @@ public class ExecutorExample {
         singleThreadExecutor();
         threadPool();
         cachedThreadPool();
+        scheduledThreadPool();
+    }
+
+    private static void scheduledThreadPool() {
+        ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(2);
+        scheduledThreadPoolExecutor.scheduleAtFixedRate(new SimpleMesasgeThread("This is a scheduled thread with fixed rate"), 100,1000, TimeUnit.MILLISECONDS);
+        scheduledThreadPoolExecutor.scheduleWithFixedDelay(new SimpleMesasgeThread("This is a scheduled thread with fixed delay"), 100, 1000, TimeUnit.MILLISECONDS);
     }
 
     private static void cachedThreadPool() {
